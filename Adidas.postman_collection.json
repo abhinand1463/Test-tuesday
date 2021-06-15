@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "75e2362d-943a-47ad-8712-e5859d35733f",
+		"name": "Adidas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Setup",
+			"item": [
+				{
+					"name": "List all products",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of id\", function () {\r",
+									"    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of name\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of description\", function () {\r",
+									"    pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of imgURL\", function () {\r",
+									"    pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response matches collection variable\", function () {\r",
+									"//     pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"//     pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"//     pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"//     pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{productID}}\",\r\n    \"name\": \"{{productName}}\",\r\n    \"description\": \"{{productDescription}}\",\r\n    \"imgUrl\": \"{{productURL}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "Open specific product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of id\", function () {\r",
+									"    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of name\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of description\", function () {\r",
+									"    pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of imgURL\", function () {\r",
+									"    pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/{{productID}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"{{productID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify specific product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of id\", function () {\r",
+									"    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"    });\r",
+									"\r",
+									"const concatenatedName = pm.collectionVariables.get(\"productName\") + \"A\"\r",
+									"pm.test(\"Response matches the updated name\", function () {\r",
+									"    // pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"    pm.expect(pm.response.json().name).to.eql(concatenatedName);\r",
+									"    });\r",
+									"\r",
+									"const concatenatedDescription = pm.collectionVariables.get(\"productDescription\") + \"B\"\r",
+									"pm.test(\"Response matches the updated description\", function () {\r",
+									"pm.expect(pm.response.json().description).to.eql(concatenatedDescription);\r",
+									"    // pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of imgURL\", function () {\r",
+									"    pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const concatenatedString = pm.collectionVariables.get(\"productName\") + \"A\"\r",
+									"\r",
+									"// console.log(concatenatedString);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{productID}}\",\r\n    \"name\": \"{{productName}}A\",\r\n    \"description\": \"{{productDescription}}B\",\r\n    \"imgUrl\": \"{{productURL}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/product/{{productID}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"{{productID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check updated product details",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of id\", function () {\r",
+									"    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"    });\r",
+									"\r",
+									"const concatenatedName = pm.collectionVariables.get(\"productName\") + \"A\"\r",
+									"pm.test(\"Response matches the updated name\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(concatenatedName);\r",
+									"    });\r",
+									"\r",
+									"const concatenatedDescription = pm.collectionVariables.get(\"productDescription\") + \"B\"\r",
+									"pm.test(\"Response matches the updated description\", function () {\r",
+									"pm.expect(pm.response.json().description).to.eql(concatenatedDescription);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Response matches collection variable of imgURL\", function () {\r",
+									"    pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Responses match collection variables\", function () {\r",
+									"//     pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get(\"productID\"));\r",
+									"//     pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"//     pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"//     pm.expect(pm.response.json().imgUrl).to.eql(pm.collectionVariables.get(\"productURL\"));\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Response matches collection variable of name\", function () {\r",
+									"//     pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+									"//     });\r",
+									"\r",
+									"// pm.test(\"Response matches collection variable of description\", function () {\r",
+									"//     pm.expect(pm.response.json().description).to.eql(pm.collectionVariables.get(\"productDescription\"));\r",
+									"//     });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/{{productID}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"{{productID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create a review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response matches the input variable of review text\", function () {\r",
+									"    pm.expect(pm.response.json().text).to.eql(pm.collectionVariables.get(\"productText\"));\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productId\": \"{{productID}}\",\r\n  \"locale\": \"abcd\",\r\n  \"rating\": {{productReview}},\r\n  \"text\": \"{{productText}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/reviews/{{productID}}A",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"reviews",
+								"{{productID}}A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List reviews for specific product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/reviews/{{productID}}A",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"reviews",
+								"{{productID}}A"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "Delete created product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   });\r",
+									"\r",
+									"pm.test(\"Deleted 1 record\", function () {\r",
+									"    pm.expect(pm.response.json().ok).to.eql(1);\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/{{productID}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"{{productID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if product is still listed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/{{productID}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"{{productID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 100ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "productID",
+			"value": "ABHI1406"
+		},
+		{
+			"key": "productName",
+			"value": "Football"
+		},
+		{
+			"key": "productDescription",
+			"value": "This is an excellent football"
+		},
+		{
+			"key": "productURL",
+			"value": "https://assets.adidas.com/images/w_276,h_276,f_auto,q_auto:sensitive,fl_lossy/b8c9ddc4ada74d9fb819ac450127c685_9366/FY0965_00_plp_standard.jpg"
+		},
+		{
+			"key": "productReview",
+			"value": ""
+		},
+		{
+			"key": "productText",
+			"value": ""
+		}
+	]
+}
